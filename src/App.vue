@@ -1,30 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <main class="columns is-gepless is-multiline">
+    <div class="column is-one-quarter">
+      <BarraLateral/>
+    </div>
+    <div class="column is-three-quarter">
+      <Formulario></Formulario>
+    </div>
+  </main>
 </template>
-
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import BarraLateral from './components/BarraLateral.vue'
+  import Formulario from './components/Formulario.vue'
+  export default defineComponent ({
+    name: 'App',
+    components: {
+      BarraLateral,
+      Formulario
+    }
+  })
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
