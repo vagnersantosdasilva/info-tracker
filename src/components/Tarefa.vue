@@ -2,7 +2,7 @@
     <div class="box has-text-weight-bold">
         <div class="columns">
             <div class="column is-7">
-                {{ tarefa.descricao }}
+                {{ descricao }}
             </div>
             <div class="column">
                 <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos" />
@@ -23,6 +23,14 @@ export default defineComponent({
         type: Object as PropType<ITarefa>,
         required: true  
       }
+    },
+    computed:{
+        descricao () :string {
+            if (this.tarefa.descricao && this.tarefa.descricao.length>0){
+                return this.tarefa.descricao
+            }
+            return 'Tarefa sem descrição'
+        }
     },
     components: {
         Cronometro
