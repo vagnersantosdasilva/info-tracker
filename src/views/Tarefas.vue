@@ -1,5 +1,7 @@
 <template>
     <div>
+        <h1 class="title">Tarefas</h1>
+        <hr>
         <Formulario @aoSalvarTarefa="salvarTarefa"></Formulario>
         <div class="lista">
             <Tarefa v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />

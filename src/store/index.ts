@@ -19,6 +19,12 @@ export const store = createStore<Estado>({
         nome: nomeDoProjeto
       } as IProjeto
       state.projetos.push(projeto)
+    },
+    'REMOVER_PROJETO'(state, idProjeto: string) {
+      const indexProjeto = state.projetos.findIndex(projeto => projeto.id === idProjeto);
+      if (indexProjeto !== -1) {
+        state.projetos.splice(indexProjeto, 1);
+      }
     }
   }  
 })

@@ -1,75 +1,61 @@
 <template>
-  <div>
-    <header>
-        <h1 class="titulo">
-            Info Tracker
-        </h1>
-        <nav class="panel mt-5">
-            <ul>
-              <li>
-                <RouterLink to="/" class="link">
-                  <i class="fas fa-tasks"></i>Tarefas
-                </RouterLink>
-              </li>
-              <li>
-                <RouterLink to="/projetos" class="link">
-                  <i class="fas fa-project-diagram"></i>Projetos
-                </RouterLink>
-              </li>
-            </ul>
-        </nav>
-    </header>
-    
-    </div>
+  <aside class="menu">
+    <p class="menu-label">Principal</p>
+    <ul class="menu-list">
+      <li v-for="(item,index) in generalLinks" :key="index">
+        <router-link :to="{ path: item.path }" class="link">
+          {{ item.text }}
+        </router-link>
+      </li>
+    </ul>
+    </aside>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
+interface LinkItem {
+  path: string;
+  text: string;
+}
 export default defineComponent({
-    name: 'BarraLateral'
-})
+  name: 'BarraLateral',
+  setup() {
+    
+    const generalLinks: LinkItem[] = [
+      { path: '/', text: 'Tarefas' },
+      { path: '/projetos', text: 'Projetos' },
+    ];
+
+
+    return { generalLinks };
+  },
+});
 </script>
 
 <style scoped>
-header {
-  padding: 1rem;
-  background: #0d3b66;
-  width: 100%;
+
+aside{
+  border-right: 1px solid #e8e8f3;
   height: 100vh;
-}
-.titulo {
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 30px;
+  padding: 15px;
 }
 
-.panel li {
-    margin: 8px 0;
-    gap: 5px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-.link {
-    color: #fff;
-    font-size: 25px;
-    margin: 10px;
-    gap: 3px;
-    
-}
+/* .link {
+  color: #fff;
+  font-size: 25px;
+  margin: 10px;
+  gap: 3px;
+
+} */
+
 .link:hover {
-    color: #FAF0CA;
-}
-.link.router-link-active {
-    color: #FAF0CA;
+  color: #2c355f;
 }
 
-@media only screen and (max-width: 768px) {
-  header {
-    padding: 2.5rem;
-    height: auto;
-  }
+.link.router-link-active {
+  color: #ffffff;
+  background-color: #4f4b83;
 }
+
+
 </style>
