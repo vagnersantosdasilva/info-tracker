@@ -36,8 +36,10 @@ export default defineComponent({
 
 aside{
   border-right: 1px solid #e8e8f3;
-  height: 100vh;
+  height: 98vh;
+  max-height: 98vh;
   padding: 15px;
+  overflow-y: auto;
 }
 
 /* .link {
