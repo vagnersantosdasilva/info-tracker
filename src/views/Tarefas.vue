@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1 class="title">Tarefas</h1>
+    <div class="tarefas">
+        <div class="title">Tarefas</div>
         <hr>
         <Formulario @aoSalvarTarefa="salvarTarefa"></Formulario>
         <div class="lista">
@@ -33,6 +33,9 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+.tarefas {
+    padding: 1px;
+}
 .lista {
     padding: 1.25rem;
 }
