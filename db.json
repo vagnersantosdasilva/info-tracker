@@ -1,0 +1,16 @@
+{
+  "projetos": [
+    {
+      "id": "f7f2",
+      "nome": "AWS ALURA"
+    },
+    {
+      "id": "12bd",
+      "nome": "DOCKER Coursera"
+    },
+    {
+      "id": "cfcb",
+      "nome": "TDD ITA"
+    }
+  ]
+}

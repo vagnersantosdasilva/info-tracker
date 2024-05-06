@@ -58,6 +58,7 @@ import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
 import IProjeto from '@/interfaces/IProjeto'
 import { REMOVE_PROJETO } from '@/store/constants'
+import { OBTER_PROJETOS, REMOVER_PROJETO } from '@/store/actions'
 
 export default defineComponent({
     // eslint-disable-next-line vue/multi-word-component-names
@@ -100,7 +101,8 @@ export default defineComponent({
             if (this.projetoSelecionado.id != null) {
                 this.nomeDoProjeto = ''
                 this.idProjeto = ''
-                this.store.commit(REMOVE_PROJETO, this.projetoSelecionado.id)
+                //this.store.commit(REMOVE_PROJETO, this.projetoSelecionado.id)
+                this.store.dispatch(REMOVER_PROJETO,this.projetoSelecionado.id)
                 this.projetoSelecionado = { id: '', nome: '' }
             }
         },
@@ -121,6 +123,7 @@ export default defineComponent({
     },
     setup() {
         const store = useStore()
+        store.dispatch(OBTER_PROJETOS)
         return {
             store,
             // eslint-disable-next-line vue/no-dupe-keys

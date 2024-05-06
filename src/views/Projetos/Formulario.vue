@@ -29,8 +29,8 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
-import IProjeto from '@/interfaces/IProjeto'
-import { ADICIONA_PROJETO, ALTERA_PROJETO } from '@/store/constants'
+//import IProjeto from '@/interfaces/IProjeto'
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO } from '@/store/actions'
 
 export default defineComponent({
     // eslint-disable-next-line vue/multi-word-component-names
@@ -48,19 +48,20 @@ export default defineComponent({
     },
     methods: {
         salvar() {
-            console.log('id:',this.id)
-            console.log('nome:',this.nomeDoProjeto)
             if (this.id && this.id.length > 0){
                 console.log('editando projeto')
-                this.store.commit(ALTERA_PROJETO, {
+                this.store.dispatch(ALTERAR_PROJETO, {
                     nome: this.nomeDoProjeto, 
                     id:this.id
                 })
             }
             else {
-                console.log('adicionando projeto')
-                this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto)
-                this.nomeDoProjeto = ''
+                //this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto)
+                this.store.dispatch(CADASTRAR_PROJETO,this.nomeDoProjeto)
+                .then(()=>{
+                    this.nomeDoProjeto = ''
+                })
+                
             }
         },
         voltar (){
