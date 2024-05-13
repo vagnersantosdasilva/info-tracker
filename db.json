@@ -3,10 +3,19 @@
     {
       "id": "3803",
       "duracaoEmSegundos": 9,
-      "descricao": "Teste",
+      "descricao": "Alura - Prática de Docker",
       "projeto": {
         "nome": "DOCKER",
         "id": "12bd"
+      }
+    },
+    {
+      "id": "7250",
+      "duracaoEmSegundos": 6,
+      "descricao": "Alura - Prática de Vue.JS ",
+      "projeto": {
+        "id": "cfcb",
+        "nome": "TDD ITA"
       }
     }
   ],

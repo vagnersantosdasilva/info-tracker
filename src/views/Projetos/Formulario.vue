@@ -70,7 +70,7 @@ export default defineComponent({
     },
     mounted(){
         if (this.id){
-            const projeto = this.store.state.projetos.find(projeto => projeto.id == this.id)
+            const projeto = this.store.state.projeto.projetos.find(projeto => projeto.id == this.id)
             this.nomeDoProjeto = projeto?.nome || ''
         }
     },
@@ -85,7 +85,7 @@ export default defineComponent({
         return {
             store,
             // eslint-disable-next-line vue/no-dupe-keys
-            projetos: computed(() => store.state.projetos),
+            projetos: computed(() => store.state.projeto.projetos),
         }
     }
 })

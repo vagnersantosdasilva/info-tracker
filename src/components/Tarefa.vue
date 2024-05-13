@@ -1,6 +1,6 @@
 <template>
     <div class="box has-text-weight-bold">
-        <div class="columns">
+        <div class="columns" @click="tarefaClicada" style="cursor: pointer;">
             <div class="column is-6">
                 {{ descricao }}
             </div>
@@ -21,11 +21,18 @@ import ITarefa from '@/interfaces/ITarefa';
 export default defineComponent({
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Tarefa',
+    emits:['aoTarefaClicada'],
     props:{
       tarefa:{
         type: Object as PropType<ITarefa>,
         required: true  
       }
+    },
+    methods:{
+        tarefaClicada () : void {
+            console.log('emitindo tarefa clicada')
+            this.$emit('aoTarefaClicada', this.tarefa)
+        }
     },
     computed:{
         descricao () :string {

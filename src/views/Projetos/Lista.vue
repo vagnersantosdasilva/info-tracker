@@ -127,7 +127,7 @@ export default defineComponent({
         return {
             store,
             // eslint-disable-next-line vue/no-dupe-keys
-            projetos: computed(() => store.state.projetos),
+            projetos: computed(() => store.state.projeto.projetos),
         }
     }
 
