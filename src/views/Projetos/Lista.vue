@@ -57,7 +57,7 @@
 import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
 import IProjeto from '@/interfaces/IProjeto'
-import { REMOVE_PROJETO } from '@/store/constants'
+import { REMOVE_PROJETO } from '@/store/mutations'
 import { OBTER_PROJETOS, REMOVER_PROJETO } from '@/store/actions'
 
 export default defineComponent({

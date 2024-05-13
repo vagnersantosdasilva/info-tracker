@@ -1,8 +1,11 @@
 <template>
     <div class="box has-text-weight-bold">
         <div class="columns">
-            <div class="column is-7">
+            <div class="column is-6">
                 {{ descricao }}
+            </div>
+            <div class="column">
+                {{ projeto }}
             </div>
             <div class="column">
                 <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos" />
@@ -30,6 +33,12 @@ export default defineComponent({
                 return this.tarefa.descricao
             }
             return 'Tarefa sem descrição'
+        },
+        projeto () :string {
+            if(this.tarefa.projeto.nome && this.tarefa.projeto.nome.length>0){
+                return this.tarefa.projeto.nome
+            }
+            return 'Tarefa sem projeto'
         }
     },
     components: {

@@ -9,10 +9,13 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import Formulario from '../components/Formulario.vue'
 import Tarefa from '../components/Tarefa.vue'
 import ITarefa from '../interfaces/ITarefa';
+import { useStore } from '@/store'
+import { CADASTRAR_TAREFA,OBTER_PROJETOS,OBTER_TAREFAS } from '@/store/actions';
+
 export default defineComponent({
     name: 'App',
     components: {
@@ -27,7 +30,17 @@ export default defineComponent({
     },
     methods: {
         salvarTarefa(tarefa: ITarefa) {
-            this.tarefas.push(tarefa)
+            this.store.dispatch(CADASTRAR_TAREFA,tarefa)
+        }
+    },
+    setup() {
+        const store = useStore()
+        store.dispatch(OBTER_TAREFAS)
+        store.dispatch(OBTER_PROJETOS)
+        return {
+            store,
+            // eslint-disable-next-line vue/no-dupe-keys
+            tarefas: computed(() => store.state.tarefas),
         }
     }
 })

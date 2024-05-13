@@ -2,18 +2,24 @@
 import IProjeto from '@/interfaces/IProjeto'
 import { InjectionKey } from 'vue'
 import { Store, createStore, useStore as vuexUseStore} from 'vuex'
-import { ADICIONA_PROJETO, ALTERA_PROJETO, DEFINIR_PROJETOS, REMOVE_PROJETO } from './constants'
-import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS, REMOVER_PROJETO } from './actions'
+import { ADICIONA_PROJETO, ADICIONA_TAREFA, ALTERA_PROJETO, DEFINIR_PROJETOS, DEFINIR_TAREFAS, REMOVE_PROJETO } from './mutations'
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO, CADASTRAR_TAREFA, OBTER_PROJETOS, OBTER_TAREFAS, REMOVER_PROJETO } from './actions'
 import http from '@/http'
+import ITarefa from '@/interfaces/ITarefa'
+
 interface Estado {
-  projetos : IProjeto[]
+  projetos : IProjeto[],
+  tarefas : ITarefa[]
 }
+
 export const key: InjectionKey<Store<Estado>> = Symbol()
 
 export const store = createStore<Estado>({
   state: {
-    projetos: []
+    projetos: [],
+    tarefas: []
   },
+
   mutations: {
     [ADICIONA_PROJETO](state, nomeDoProjeto: string) {
       const projeto = {
@@ -37,15 +43,19 @@ export const store = createStore<Estado>({
     [DEFINIR_PROJETOS](state, projetos: IProjeto[]) {
       state.projetos = projetos
     },
+
+    [DEFINIR_TAREFAS](state, tarefas: ITarefa[]) {
+      state.tarefas = tarefas
+    },
+    [ADICIONA_TAREFA](state, tarefa: ITarefa) {
+      state.tarefas.push(tarefa)
+    },
   }, 
+ 
   actions: {
     [OBTER_PROJETOS]({ commit}) {
       http.get('projetos')
       .then(resposta => commit(DEFINIR_PROJETOS,resposta.data))
-    },
-
-    [CADASTRAR_PROJETO](contexto,nomeDoProjeto:string){
-      return http.post('/projetos',{nome:nomeDoProjeto})
     },
 
     [ALTERAR_PROJETO](contexto,projeto: IProjeto){
@@ -55,7 +65,17 @@ export const store = createStore<Estado>({
     [REMOVER_PROJETO]({commit}, id: string){
       return http.delete(`/projetos/${id}`)
       .then(()=>commit(REMOVE_PROJETO,id))
-    }
+    },
+    
+    [OBTER_TAREFAS]({ commit}) {
+      http.get('tarefas')
+      .then(resposta => commit(DEFINIR_TAREFAS,resposta.data))
+    },
+
+    [CADASTRAR_TAREFA]({commit},tarefa: ITarefa){
+      return http.post('/tarefas',tarefa)
+        .then(resposta => commit(ADICIONA_TAREFA,resposta.data))
+    },
   }  
 })
 
